@@ -1,0 +1,94 @@
+{
+  "config": "{\"version\":\"5.59\",\"themeCollection\":{\"baseTheme\":{\"name\":\"CY24SU10\",\"version\":\"5.65\",\"type\":2}},\"activeSectionIndex\":0,\"defaultDrillFilterOtherVisuals\":true,\"linguisticSchemaSyncVersion\":2,\"settings\":{\"useNewFilterPaneExperience\":true,\"allowChangeFilterTypes\":true,\"useStylableVisualContainerHeader\":true,\"queryLimitOption\":6,\"exportDataMode\":1,\"useDefaultAggregateDisplayName\":true,\"useEnhancedTooltips\":true},\"objects\":{\"section\":[{\"properties\":{\"verticalAlignment\":{\"expr\":{\"Literal\":{\"Value\":\"'Top'\"}}}}}],\"outspacePane\":[{\"properties\":{\"expanded\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}",
+  "layoutOptimization": 0,
+  "pods": [
+    {
+      "boundSection": "2b27b266c10dc2713a5d",
+      "config": "{}",
+      "name": "c9f12b62e22962f08c14"
+    }
+  ],
+  "resourcePackages": [
+    {
+      "resourcePackage": {
+        "disabled": false,
+        "items": [
+          {
+            "name": "CY24SU10",
+            "path": "BaseThemes/CY24SU10.json",
+            "type": 202
+          }
+        ],
+        "name": "SharedResources",
+        "type": 2
+      }
+    }
+  ],
+  "sections": [
+    {
+      "config": "{\"objects\":{\"displayArea\":[{\"properties\":{\"verticalAlignment\":{\"expr\":{\"Literal\":{\"Value\":\"'Top'\"}}}}}]}}",
+      "displayName": "Página 1",
+      "displayOption": 1,
+      "filters": "[]",
+      "height": 720.00,
+      "name": "2b27b266c10dc2713a5d",
+      "visualContainers": [
+        {
+          "config": "{\"name\":\"4d12395031038808be34\",\"layouts\":[{\"id\":0,\"position\":{\"x\":0,\"y\":79.9002493765586,\"z\":2000,\"width\":408.4788029925187,\"height\":228.92768079800499,\"tabOrder\":2000}}],\"singleVisual\":{\"visualType\":\"donutChart\",\"projections\":{\"Category\":[{\"queryRef\":\"fob_guard dim_dispositivo.estado\",\"active\":true}],\"Y\":[{\"queryRef\":\"CountNonNull(fob_guard dim_dispositivo.id)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"f\",\"Entity\":\"fob_guard dim_dispositivo\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"estado\"},\"Name\":\"fob_guard dim_dispositivo.estado\",\"NativeReferenceName\":\"estado\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"id\"}},\"Function\":5},\"Name\":\"CountNonNull(fob_guard dim_dispositivo.id)\",\"NativeReferenceName\":\"id\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"estado\"}}}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"labels\":[{\"properties\":{\"labelStyle\":{\"expr\":{\"Literal\":{\"Value\":\"'Percent of total'\"}}},\"position\":{\"expr\":{\"Literal\":{\"Value\":\"'inside'\"}}},\"overflow\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}},\"percentageLabelPrecision\":{\"expr\":{\"Literal\":{\"Value\":\"1L\"}}}}}],\"legend\":[{\"properties\":{\"showTitle\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Distribución de Dispositivos por Estado'\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 228.93,
+          "width": 408.48,
+          "x": 0.00,
+          "y": 79.90,
+          "z": 2000.00
+        },
+        {
+          "config": "{\"name\":\"7dae5755854d06f498fd\",\"layouts\":[{\"id\":0,\"position\":{\"x\":315.1122194513716,\"y\":4.488778054862843,\"z\":4000,\"width\":147.23192019950125,\"height\":73.61596009975062,\"tabOrder\":4000}}],\"singleVisual\":{\"visualType\":\"card\",\"projections\":{\"Values\":[{\"queryRef\":\"CountNonNull(fob_guard dim_dispositivo.id)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"f\",\"Entity\":\"fob_guard dim_dispositivo\",\"Type\":0}],\"Select\":[{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"id\"}},\"Function\":5},\"Name\":\"CountNonNull(fob_guard dim_dispositivo.id)\",\"NativeReferenceName\":\"Total Dispositivos\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"id\"}},\"Function\":5}}}]},\"columnProperties\":{\"CountNonNull(fob_guard dim_dispositivo.id)\":{\"displayName\":\"Total Dispositivos\"}},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"labels\":[{\"properties\":{\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"23D\"}}},\"bold\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}],\"categoryLabels\":[{\"properties\":{\"bold\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]},\"vcObjects\":{\"visualHeader\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}],\"title\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 73.62,
+          "width": 147.23,
+          "x": 315.11,
+          "y": 4.49,
+          "z": 4000.00
+        },
+        {
+          "config": "{\"name\":\"90769b2dc858cf983bc1\",\"layouts\":[{\"id\":0,\"position\":{\"x\":7.182044887780548,\"y\":0,\"z\":3000,\"width\":248.67830423940148,\"height\":41.29675810473815,\"tabOrder\":3000}}],\"singleVisual\":{\"visualType\":\"textbox\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"paragraphs\":[{\"textRuns\":[{\"value\":\"Dashboard Empresarial\",\"textStyle\":{\"fontWeight\":\"bold\",\"fontSize\":\"16pt\"}}],\"horizontalTextAlignment\":\"center\"}]}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 41.30,
+          "width": 248.68,
+          "x": 7.18,
+          "y": 0.00,
+          "z": 3000.00
+        },
+        {
+          "config": "{\"name\":\"92ff7101572df055072d\",\"layouts\":[{\"id\":0,\"position\":{\"x\":0,\"y\":308.82793017456356,\"z\":1000,\"width\":408.4788029925187,\"height\":219.05236907730674,\"tabOrder\":1000}}],\"singleVisual\":{\"visualType\":\"pieChart\",\"projections\":{\"Series\":[{\"queryRef\":\"fob_guard dim_dispositivo.ubicacion\"}],\"Y\":[{\"queryRef\":\"CountNonNull(fob_guard dim_dispositivo.id)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"f\",\"Entity\":\"fob_guard dim_dispositivo\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"ubicacion\"},\"Name\":\"fob_guard dim_dispositivo.ubicacion\",\"NativeReferenceName\":\"ubicacion\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"id\"}},\"Function\":5},\"Name\":\"CountNonNull(fob_guard dim_dispositivo.id)\",\"NativeReferenceName\":\"Recuento de id\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"ubicacion\"}}}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"legend\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"showTitle\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"labels\":[{\"properties\":{\"labelStyle\":{\"expr\":{\"Literal\":{\"Value\":\"'Percent of total'\"}}},\"position\":{\"expr\":{\"Literal\":{\"Value\":\"'inside'\"}}},\"labelDisplayUnits\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}},\"background\":{\"expr\":{\"Literal\":{\"Value\":\"'auto'\"}}},\"percentageLabelPrecision\":{\"expr\":{\"Literal\":{\"Value\":\"1L\"}}},\"overflow\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"dataPoint\":[{\"properties\":{\"fill\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#1123C6'\"}}}}}},\"selector\":{\"data\":[{\"scopeId\":{\"Comparison\":{\"ComparisonKind\":0,\"Left\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"fob_guard dim_dispositivo\"}},\"Property\":\"ubicacion\"}},\"Right\":{\"Literal\":{\"Value\":\"'almacen'\"}}}}}]}},{\"properties\":{\"fill\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":2,\"Percent\":0}}}}}},\"selector\":{\"data\":[{\"scopeId\":{\"Comparison\":{\"ComparisonKind\":0,\"Left\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"fob_guard dim_dispositivo\"}},\"Property\":\"ubicacion\"}},\"Right\":{\"Literal\":{\"Value\":\"'almacén'\"}}}}}]}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Dispositivos por ubicación Actual'\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 219.05,
+          "width": 408.48,
+          "x": 0.00,
+          "y": 308.83,
+          "z": 1000.00
+        },
+        {
+          "config": "{\"name\":\"ba8b54f7a1b4d15eaa28\",\"layouts\":[{\"id\":0,\"position\":{\"x\":0,\"y\":527.8802992518703,\"z\":0,\"width\":474.9127182044888,\"height\":185.8354114713217,\"tabOrder\":0}}],\"singleVisual\":{\"visualType\":\"map\",\"projections\":{\"Y\":[{\"queryRef\":\"Sum(fob_guard fact_ubicacion_gps.latitud)\"}],\"X\":[{\"queryRef\":\"Sum(fob_guard fact_ubicacion_gps.longitud)\"}],\"Series\":[{\"queryRef\":\"fob_guard fact_ubicacion_gps.id_dispositivo\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"f\",\"Entity\":\"fob_guard fact_ubicacion_gps\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"latitud\"},\"Name\":\"Sum(fob_guard fact_ubicacion_gps.latitud)\",\"NativeReferenceName\":\"latitud\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"longitud\"},\"Name\":\"Sum(fob_guard fact_ubicacion_gps.longitud)\",\"NativeReferenceName\":\"longitud\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"id_dispositivo\"},\"Name\":\"fob_guard fact_ubicacion_gps.id_dispositivo\",\"NativeReferenceName\":\"id_dispositivo\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"legend\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Ubicación GPS de dispositivos'\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 185.84,
+          "width": 474.91,
+          "x": 0.00,
+          "y": 527.88,
+          "z": 0.00
+        },
+        {
+          "config": "{\"name\":\"f79b3fb76ddd058dc91b\",\"layouts\":[{\"id\":0,\"position\":{\"x\":474.9127182044888,\"y\":4.488778054862843,\"z\":5000,\"width\":175.06234413965086,\"height\":73.61596009975062,\"tabOrder\":5000}}],\"singleVisual\":{\"visualType\":\"card\",\"projections\":{\"Values\":[{\"queryRef\":\"CountNonNull(fob_guard dim_usuario.id)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"f\",\"Entity\":\"fob_guard dim_usuario\",\"Type\":0}],\"Select\":[{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"id\"}},\"Function\":5},\"Name\":\"CountNonNull(fob_guard dim_usuario.id)\",\"NativeReferenceName\":\"Usuarios Registrados \"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"f\"}},\"Property\":\"id\"}},\"Function\":5}}}]},\"columnProperties\":{\"CountNonNull(fob_guard dim_usuario.id)\":{\"displayName\":\"Usuarios Registrados \"}},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"labels\":[{\"properties\":{\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"23D\"}}},\"bold\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}],\"categoryLabels\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"bold\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]},\"vcObjects\":{\"visualHeader\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}],\"title\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 73.62,
+          "width": 175.06,
+          "x": 474.91,
+          "y": 4.49,
+          "z": 5000.00
+        }
+      ],
+      "width": 1280.00
+    }
+  ]
+}

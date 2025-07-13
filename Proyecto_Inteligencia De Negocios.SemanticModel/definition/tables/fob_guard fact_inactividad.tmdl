@@ -1,0 +1,44 @@
+table 'fob_guard fact_inactividad'
+	lineageTag: 9729549d-e49a-485b-9aa8-cae2dcdf451e
+
+	column id
+		dataType: int64
+		formatString: 0
+		lineageTag: 4ce5c8e5-aa21-40a9-9609-82b2c6c77796
+		summarizeBy: sum
+		sourceColumn: id
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_usuario
+		dataType: int64
+		formatString: 0
+		lineageTag: 92c12df4-f114-4895-9065-69dd99bb21fd
+		summarizeBy: none
+		sourceColumn: id_usuario
+
+		annotation SummarizationSetBy = Automatic
+
+	column hora_inactividad
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: fa5c7b71-b775-432c-a9bb-c42c5b9e80d4
+		summarizeBy: none
+		sourceColumn: hora_inactividad
+
+		variation Variación
+			isDefault
+			relationship: 8fb6ee95-c1da-4b5b-95e9-5b67b623972f
+			defaultHierarchy: LocalDateTable_4a22f64b-45ce-4ca6-94a1-39a6029c701b.'Jerarquía de fechas'
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'fob_guard fact_inactividad' = m
+		mode: import
+		source =
+				let
+				    Origen = MySQL.Database("pierodb.mysql.database.azure.com", "fob_guard", [ReturnSingleDatabase=true]),
+				    fob_guard_fact_inactividad = Origen{[Schema="fob_guard",Item="fact_inactividad"]}[Data]
+				in
+				    fob_guard_fact_inactividad
+

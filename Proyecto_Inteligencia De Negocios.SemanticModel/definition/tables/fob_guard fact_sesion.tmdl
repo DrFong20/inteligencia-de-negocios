@@ -1,0 +1,54 @@
+table 'fob_guard fact_sesion'
+	lineageTag: 00feb8ca-1be3-4d52-8f4c-28a1aab8f3b4
+
+	column id
+		dataType: int64
+		formatString: 0
+		lineageTag: 2f3e3bce-382b-4fae-b922-a1f53f299daf
+		summarizeBy: sum
+		sourceColumn: id
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_usuario
+		dataType: int64
+		formatString: 0
+		lineageTag: 2ea92fa3-a902-48db-85fb-a4d1efc7f0c9
+		summarizeBy: none
+		sourceColumn: id_usuario
+
+		annotation SummarizationSetBy = Automatic
+
+	column tipo_cierre
+		dataType: string
+		lineageTag: 898967e9-c556-4fcb-8807-886263b1e1a4
+		summarizeBy: none
+		sourceColumn: tipo_cierre
+
+		annotation SummarizationSetBy = Automatic
+
+	column timestamp
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 58351860-6767-411e-b7ef-aa8fcaf6f922
+		summarizeBy: none
+		sourceColumn: timestamp
+
+		variation Variación
+			isDefault
+			relationship: 143244bd-c63e-45c5-a9ce-295285848f12
+			defaultHierarchy: LocalDateTable_7597ecd3-eb80-4ea1-a40c-b882e88274a7.'Jerarquía de fechas'
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'fob_guard fact_sesion' = m
+		mode: import
+		source =
+				let
+				    Origen = MySQL.Database("pierodb.mysql.database.azure.com", "fob_guard", [ReturnSingleDatabase=true]),
+				    fob_guard_fact_sesion = Origen{[Schema="fob_guard",Item="fact_sesion"]}[Data]
+				in
+				    fob_guard_fact_sesion
+
+	annotation PBI_ResultType = Table
+

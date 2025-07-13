@@ -1,0 +1,79 @@
+table 'fob_guard fact_reserva'
+	lineageTag: 2a31b5b8-88d4-4f3d-9c3f-f0544ad36708
+
+	column id
+		dataType: int64
+		formatString: 0
+		lineageTag: 63215738-5000-4f1e-a4f3-f4abc54eed7c
+		summarizeBy: sum
+		sourceColumn: id
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_dispositivo
+		dataType: int64
+		formatString: 0
+		lineageTag: 1c280200-acbe-4abf-b1ed-57d31c2ad582
+		summarizeBy: none
+		sourceColumn: id_dispositivo
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_usuario
+		dataType: int64
+		formatString: 0
+		lineageTag: 02e67019-ac10-455d-9fff-a5b6f6d6a62f
+		summarizeBy: sum
+		sourceColumn: id_usuario
+
+		annotation SummarizationSetBy = Automatic
+
+	column fecha_reserva
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 975dde16-3293-41c8-aef1-67718fe5416b
+		summarizeBy: none
+		sourceColumn: fecha_reserva
+
+		variation Variación
+			isDefault
+			relationship: 2eaa5f4e-ddd7-4876-a210-58873730fa6c
+			defaultHierarchy: LocalDateTable_097a70d4-253a-4874-a9c5-320e8096b972.'Jerarquía de fechas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column motivo_reserva
+		dataType: string
+		lineageTag: b751779f-3c6b-4e50-8184-b618e1db4eaa
+		summarizeBy: none
+		sourceColumn: motivo_reserva
+
+		annotation SummarizationSetBy = Automatic
+
+	column tipo_movimiento
+		dataType: string
+		lineageTag: 8f9aa905-df38-4275-8af1-b0d548868272
+		summarizeBy: none
+		sourceColumn: tipo_movimiento
+
+		annotation SummarizationSetBy = Automatic
+
+	column estado_dispositivo
+		dataType: string
+		lineageTag: cf0aad6a-768a-45f5-8e79-96788889e88a
+		summarizeBy: none
+		sourceColumn: estado_dispositivo
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'fob_guard fact_reserva' = m
+		mode: import
+		source =
+				let
+				    Origen = MySQL.Database("pierodb.mysql.database.azure.com", "fob_guard", [ReturnSingleDatabase=true]),
+				    fob_guard_fact_reserva = Origen{[Schema="fob_guard",Item="fact_reserva"]}[Data]
+				in
+				    fob_guard_fact_reserva
+
+	annotation PBI_ResultType = Table
+
