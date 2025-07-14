@@ -23,7 +23,7 @@ table 'fob_guard fact_reserva'
 		dataType: int64
 		formatString: 0
 		lineageTag: 02e67019-ac10-455d-9fff-a5b6f6d6a62f
-		summarizeBy: sum
+		summarizeBy: none
 		sourceColumn: id_usuario
 
 		annotation SummarizationSetBy = Automatic
