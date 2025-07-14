@@ -55,7 +55,7 @@ table 'fob_guard dim_dispositivo'
 		dataType: int64
 		formatString: 0
 		lineageTag: 2ba90ef3-d59d-4c27-bf66-d85a7a02f0f9
-		summarizeBy: none
+		summarizeBy: sum
 		sourceColumn: id_usuario
 
 		annotation SummarizationSetBy = Automatic

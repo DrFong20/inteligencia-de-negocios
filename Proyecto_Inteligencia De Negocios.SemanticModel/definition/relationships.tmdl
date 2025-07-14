@@ -29,6 +29,7 @@ relationship 1e49abcc-fab6-4ff7-ab71-4c562d9246e1
 	toColumn: LocalDateTable_66cf3d7b-955c-4ba2-bcd2-f996764c8737.Date
 
 relationship f944a41d-2a45-417e-b774-ddba4b8b6f94
+	isActive: false
 	fromColumn: 'fob_guard dim_dispositivo'.id_usuario
 	toColumn: 'fob_guard dim_usuario'.id
 
@@ -47,7 +48,6 @@ relationship 1b13e772-c4a0-4efb-840f-f80aa31da115
 	annotation PBI_IsFromSource = FS
 
 relationship 6d6b9bd3-caa7-417b-925c-569f252f947d
-	isActive: false
 	fromColumn: 'fob_guard fact_reserva'.id_usuario
 	toColumn: 'fob_guard dim_usuario'.id
 
