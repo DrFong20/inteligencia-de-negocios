@@ -1,0 +1,76 @@
+name: CI - Validation and Testing
+
+on:
+  pull_request:
+    branches: [ main, develop ]
+  push:
+    branches: [ develop, feature/* ]
+
+jobs:
+  validate-pbip:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        
+      - name: Validate PBIP structure
+        run: |
+          echo "🔍 Validating PBIP project structure..."
+          
+          # Verificar que existan archivos .pbir
+          if ls *.pbir 1> /dev/null 2>&1; then
+            echo "✅ Found .pbir files"
+            ls -la *.pbir
+          else
+            echo "❌ No .pbir files found"
+            exit 1
+          fi
+          
+          # Verificar estructura de carpetas
+          echo "📁 Checking folder structure..."
+          if [ -d "definition" ]; then
+            echo "✅ Definition folder exists"
+          else
+            echo "❌ Definition folder missing"
+            exit 1
+          fi
+          
+          echo "✅ PBIP structure validation completed successfully"
+          
+      - name: Check JSON syntax
+        run: |
+          echo "🔍 Validating JSON files..."
+          
+          # Buscar y validar archivos JSON
+          find . -name "*.json" -type f | while read file; do
+            if python3 -m json.tool "$file" > /dev/null 2>&1; then
+              echo "✅ $file is valid JSON"
+            else
+              echo "❌ $file has invalid JSON syntax"
+              exit 1
+            fi
+          done
+          
+          echo "✅ All JSON files are valid"
+          
+      - name: Security scan
+        run: |
+          echo "🔒 Running security checks..."
+          
+          # Verificar que no haya credenciales hardcodeadas
+          if grep -r -i "password\|secret\|key" --include="*.json" --include="*.pbir" . | grep -v ".git"; then
+            echo "⚠️ Potential credentials found in files"
+            echo "Please review and remove any hardcoded credentials"
+            exit 1
+          else
+            echo "✅ No hardcoded credentials detected"
+          fi
+          
+      - name: Report validation results
+        run: |
+          echo "📊 Validation Summary:"
+          echo "✅ PBIP structure: Valid"
+          echo "✅ JSON syntax: Valid"
+          echo "✅ Security scan: Passed"
+          echo "🎉 Ready for deployment!"
