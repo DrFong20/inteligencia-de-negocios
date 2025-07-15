@@ -2,164 +2,42 @@ name: Deploy to Power BI Service
 
 on:
   push:
-    branches: [ main ]
-  workflow_dispatch:  # Permite ejecución manual
+    branches: [main, develop]
 
 jobs:
-  deploy-dev:
+  deploy:
     runs-on: ubuntu-latest
-    environment: development
-    
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-        
-      - name: Setup PowerShell
-        uses: azure/powershell@v1
-        with:
-          azPSVersion: 'latest'
-          
-      - name: Install Power BI PowerShell Module
-        run: |
-          Install-Module -Name MicrosoftPowerBIMgmt -Force -Scope CurrentUser
-          Import-Module MicrosoftPowerBIMgmt
-        shell: pwsh
-        
-      - name: Connect to Power BI Service
-        run: |
-          $SecurePassword = ConvertTo-SecureString "${{ secrets.POWERBI_CLIENT_SECRET }}" -AsPlainText -Force
-          $Credential = New-Object System.Management.Automation.PSCredential("${{ secrets.POWERBI_CLIENT_ID }}", $SecurePassword)
-          
-          Connect-PowerBIServiceAccount -ServicePrincipal -Credential $Credential -TenantId "${{ secrets.POWERBI_TENANT_ID }}"
-          
-          Write-Host "✅ Connected to Power BI Service"
-        shell: pwsh
-        
-      - name: Deploy to Development Environment
-        run: |
-          $WorkspaceId = "${{ secrets.DEV_WORKSPACE_ID }}"
-          
-          Write-Host "🚀 Deploying to Development Environment..."
-          Write-Host "Workspace ID: $WorkspaceId"
-          
-          # Buscar archivo .pbir
-          $PbirFile = Get-ChildItem -Filter "*.pbir" | Select-Object -First 1
-          
-          if ($PbirFile) {
-            Write-Host "📄 Found PBIR file: $($PbirFile.Name)"
-            
-            # Aquí irían los comandos específicos para subir el archivo
-            # Por ejemplo, usando la API REST de Power BI
-            
-            Write-Host "✅ Deployment to Development completed successfully"
-          } else {
-            Write-Host "❌ No PBIR file found"
-            exit 1
-          }
-        shell: pwsh
 
-  deploy-staging:
-    needs: deploy-dev
-    runs-on: ubuntu-latest
-    environment: staging
-    if: github.ref == 'refs/heads/main'
-    
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-        
-      - name: Setup PowerShell
-        uses: azure/powershell@v1
-        with:
-          azPSVersion: 'latest'
-          
-      - name: Install Power BI PowerShell Module
-        run: |
-          Install-Module -Name MicrosoftPowerBIMgmt -Force -Scope CurrentUser
-          Import-Module MicrosoftPowerBIMgmt
-        shell: pwsh
-        
-      - name: Connect to Power BI Service
-        run: |
-          $SecurePassword = ConvertTo-SecureString "${{ secrets.POWERBI_CLIENT_SECRET }}" -AsPlainText -Force
-          $Credential = New-Object System.Management.Automation.PSCredential("${{ secrets.POWERBI_CLIENT_ID }}", $SecurePassword)
-          
-          Connect-PowerBIServiceAccount -ServicePrincipal -Credential $Credential -TenantId "${{ secrets.POWERBI_TENANT_ID }}"
-          
-          Write-Host "✅ Connected to Power BI Service"
-        shell: pwsh
-        
-      - name: Deploy to Staging Environment
-        run: |
-          $WorkspaceId = "${{ secrets.STAGING_WORKSPACE_ID }}"
-          
-          Write-Host "🚀 Deploying to Staging Environment..."
-          Write-Host "Workspace ID: $WorkspaceId"
-          
-          # Buscar archivo .pbir
-          $PbirFile = Get-ChildItem -Filter "*.pbir" | Select-Object -First 1
-          
-          if ($PbirFile) {
-            Write-Host "📄 Found PBIR file: $($PbirFile.Name)"
-            Write-Host "✅ Deployment to Staging completed successfully"
-          } else {
-            Write-Host "❌ No PBIR file found"
-            exit 1
-          }
-        shell: pwsh
+    environment: ${{ github.ref_name == 'main' && 'production' || github.ref_name == 'develop' && 'development' || 'staging' }}
 
-  deploy-production:
-    needs: deploy-staging
-    runs-on: ubuntu-latest
-    environment: production
-    if: github.ref == 'refs/heads/main'
-    
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-        
-      - name: Setup PowerShell
-        uses: azure/powershell@v1
-        with:
-          azPSVersion: 'latest'
-          
-      - name: Install Power BI PowerShell Module
-        run: |
-          Install-Module -Name MicrosoftPowerBIMgmt -Force -Scope CurrentUser
-          Import-Module MicrosoftPowerBIMgmt
-        shell: pwsh
-        
-      - name: Connect to Power BI Service
-        run: |
-          $SecurePassword = ConvertTo-SecureString "${{ secrets.POWERBI_CLIENT_SECRET }}" -AsPlainText -Force
-          $Credential = New-Object System.Management.Automation.PSCredential("${{ secrets.POWERBI_CLIENT_ID }}", $SecurePassword)
-          
-          Connect-PowerBIServiceAccount -ServicePrincipal -Credential $Credential -TenantId "${{ secrets.POWERBI_TENANT_ID }}"
-          
-          Write-Host "✅ Connected to Power BI Service"
-        shell: pwsh
-        
-      - name: Deploy to Production Environment
-        run: |
-          $WorkspaceId = "${{ secrets.PROD_WORKSPACE_ID }}"
-          
-          Write-Host "🚀 Deploying to Production Environment..."
-          Write-Host "Workspace ID: $WorkspaceId"
-          
-          # Buscar archivo .pbir
-          $PbirFile = Get-ChildItem -Filter "*.pbir" | Select-Object -First 1
-          
-          if ($PbirFile) {
-            Write-Host "📄 Found PBIR file: $($PbirFile.Name)"
-            Write-Host "🎉 Deployment to Production completed successfully"
-          } else {
-            Write-Host "❌ No PBIR file found"
-            exit 1
-          }
-        shell: pwsh
-        
-      - name: Send notification
-        run: |
-          Write-Host "📧 Sending deployment notification..."
-          Write-Host "✅ Production deployment completed at $(Get-Date)"
-        shell: pwsh
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Instalar .NET y pbi-tools
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y dotnet-sdk-6.0
+        dotnet tool install --global PbiTools
+
+    - name: Autenticarse con Azure (Service Principal)
+      run: |
+        export PBITOOLS_CLIENTID=${{ secrets.POWERBI_CLIENT_ID }}
+        export PBITOOLS_CLIENTSECRET=${{ secrets.POWERBI_CLIENT_SECRET }}
+        export PBITOOLS_TENANTID=${{ secrets.POWERBI_TENANT_ID }}
+
+    - name: Determinar Workspace
+      run: |
+        if [[ "${{ github.ref_name }}" == "main" ]]; then
+          echo "WORKSPACE_ID=${{ secrets.PROD_WORKSPACE_ID }}" >> $GITHUB_ENV
+        elif [[ "${{ github.ref_name }}" == "develop" ]]; then
+          echo "WORKSPACE_ID=${{ secrets.DEV_WORKSPACE_ID }}" >> $GITHUB_ENV
+        else
+          echo "WORKSPACE_ID=${{ secrets.STAGING_WORKSPACE_ID }}" >> $GITHUB_ENV
+        fi
+
+    - name: Publicar PBIP a Power BI Service
+      run: |
+        pbi-tools push "Proyecto_Inteligencia De Negocios.pbip" \
+          --workspace-id "$WORKSPACE_ID" \
+          --deployment-mode CreateOrOverwrite
