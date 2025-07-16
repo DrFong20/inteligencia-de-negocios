@@ -1,0 +1,25 @@
+name: Workflow ci/cd power
+on:
+    push:
+        branches: main
+
+jobs:
+ Deploy-Asset:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Get changed files
+        id: changed-files
+        uses: SkyHighGrowth/gha-changed-files@v1.0.1
+        with:
+          separator: ","
+          quotepath: "false"
+      - name: Upload files
+        uses: SkyHighGrowth/gha-powerbi-utils@v1.0.1 # Replace this with the latest version
+        with:
+          files: ${{ steps.changed-files.outputs.all_modified_files }}
+        env:
+          CLIENT_ID: ${{ secrets.client_id }}
+          CLIENT_SECRET: ${{ secrets.client_secret }}
