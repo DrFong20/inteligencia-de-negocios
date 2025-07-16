@@ -1,13 +1,12 @@
-table LocalDateTable_4a22f64b-45ce-4ca6-94a1-39a6029c701b
+table LocalDateTable_2ed69ab1-9239-4b18-938a-74ba9673f79a
 	isHidden
 	showAsVariationsOnly
-	lineageTag: 0a094fc0-c6a4-43a2-846b-a709f77d04d1
+	lineageTag: 2a4d928f-b850-4e02-b10b-48f4efd29aab
 
 	column Date
 		dataType: dateTime
 		isHidden
-		formatString: General Date
-		lineageTag: 65e3b75e-6170-4198-82ea-af4d441bc2ab
+		lineageTag: 7b4402f0-8288-4543-9b66-8cdfc2acd8b7
 		dataCategory: PaddedDateTableDates
 		summarizeBy: none
 		isNameInferred
@@ -18,8 +17,7 @@ table LocalDateTable_4a22f64b-45ce-4ca6-94a1-39a6029c701b
 	column Año = YEAR([Date])
 		dataType: int64
 		isHidden
-		formatString: 0
-		lineageTag: d95bb3b7-05d3-415a-8c34-d1043334d03d
+		lineageTag: b8c4eef6-6ae7-4ef7-9367-77820092d7ad
 		dataCategory: Years
 		summarizeBy: none
 
@@ -30,8 +28,7 @@ table LocalDateTable_4a22f64b-45ce-4ca6-94a1-39a6029c701b
 	column NroMes = MONTH([Date])
 		dataType: int64
 		isHidden
-		formatString: 0
-		lineageTag: f439eeff-9395-4da6-875e-80181e9d2185
+		lineageTag: 678dc7e0-c5bc-43de-ad32-dd9554ff5176
 		dataCategory: MonthOfYear
 		summarizeBy: none
 
@@ -42,7 +39,7 @@ table LocalDateTable_4a22f64b-45ce-4ca6-94a1-39a6029c701b
 	column Mes = FORMAT([Date], "MMMM")
 		dataType: string
 		isHidden
-		lineageTag: 55876764-3cc2-4422-a07b-29c867e121cf
+		lineageTag: c428b35c-caa8-4dfb-bda1-c4ffe711b369
 		dataCategory: Months
 		summarizeBy: none
 		sortByColumn: NroMes
@@ -54,8 +51,7 @@ table LocalDateTable_4a22f64b-45ce-4ca6-94a1-39a6029c701b
 	column NroTrimestre = INT(([NroMes] + 2) / 3)
 		dataType: int64
 		isHidden
-		formatString: 0
-		lineageTag: 33cb9e47-b226-40d3-9fc3-849f96778fba
+		lineageTag: 8e3c3e2d-4fff-4a33-8f96-a15f0435c90f
 		dataCategory: QuarterOfYear
 		summarizeBy: none
 
@@ -66,7 +62,7 @@ table LocalDateTable_4a22f64b-45ce-4ca6-94a1-39a6029c701b
 	column Trimestre = "Qtr " & [NroTrimestre]
 		dataType: string
 		isHidden
-		lineageTag: 9ca6f6b6-e8ae-4f55-8af0-860633ea0d03
+		lineageTag: 1d74fd00-aece-43fd-a28b-702dc0dc0923
 		dataCategory: Quarters
 		summarizeBy: none
 		sortByColumn: NroTrimestre
@@ -78,8 +74,7 @@ table LocalDateTable_4a22f64b-45ce-4ca6-94a1-39a6029c701b
 	column Día = DAY([Date])
 		dataType: int64
 		isHidden
-		formatString: 0
-		lineageTag: 34d23c6f-3964-4387-85e8-caf8245985fe
+		lineageTag: 88176798-0d7c-4e3d-ad2a-d0207f790b4e
 		dataCategory: DayOfMonth
 		summarizeBy: none
 
@@ -88,27 +83,27 @@ table LocalDateTable_4a22f64b-45ce-4ca6-94a1-39a6029c701b
 		annotation TemplateId = Day
 
 	hierarchy 'Jerarquía de fechas'
-		lineageTag: 8f8109b0-ca4e-4ea2-a03f-c34d1de2f8f2
+		lineageTag: 786bf060-6301-40c1-98f3-02a7e65f4abe
 
 		level Año
-			lineageTag: f011cc42-3bdd-4d86-8bad-8a08b545648c
+			lineageTag: 60155237-c5f1-4c97-9cc5-30c10fc11b3d
 			column: Año
 
 		level Trimestre
-			lineageTag: ba6edcf2-3a45-446f-b7ef-c813ebbd74f2
+			lineageTag: f9d27aac-1e39-4906-88e4-d8f9acacadd3
 			column: Trimestre
 
 		level Mes
-			lineageTag: b68c9d45-eb69-491f-86ed-c5ea8747c0a6
+			lineageTag: 06065e25-8fe7-444d-aff8-050d1180ecd0
 			column: Mes
 
 		level Día
-			lineageTag: 13af712e-fb11-4d94-a01d-1b1bf219a5f1
+			lineageTag: 3a2a7b04-25d8-4812-be9b-45aaa1fc6981
 			column: Día
 
 		annotation TemplateId = DateHierarchy
 
-	partition LocalDateTable_4a22f64b-45ce-4ca6-94a1-39a6029c701b = calculated
+	partition LocalDateTable_2ed69ab1-9239-4b18-938a-74ba9673f79a = calculated
 		mode: import
 		source = Calendar(Date(Year(MIN('fob_guard fact_inactividad'[hora_inactividad])), 1, 1), Date(Year(MAX('fob_guard fact_inactividad'[hora_inactividad])), 12, 31))
 

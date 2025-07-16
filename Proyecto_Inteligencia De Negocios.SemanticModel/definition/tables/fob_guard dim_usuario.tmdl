@@ -1,10 +1,10 @@
 table 'fob_guard dim_usuario'
-	lineageTag: 02d66611-04a6-42a4-9e4d-43f554dfc845
+	lineageTag: edca5280-8eff-4151-89b7-c2b851dbfff7
 
 	column id
 		dataType: int64
 		formatString: 0
-		lineageTag: fadc3e67-7074-4e90-a4f0-992aaea4f55f
+		lineageTag: 376ada98-18b0-4284-af37-8e285951224e
 		summarizeBy: none
 		sourceColumn: id
 
@@ -12,7 +12,7 @@ table 'fob_guard dim_usuario'
 
 	column nombre
 		dataType: string
-		lineageTag: a3e37daf-050d-4411-9c27-5f4ae1b543e2
+		lineageTag: 03d7cc86-739f-4d84-86cb-4b71fafe5d56
 		summarizeBy: none
 		sourceColumn: nombre
 
@@ -21,7 +21,7 @@ table 'fob_guard dim_usuario'
 	column dni
 		dataType: int64
 		formatString: 0
-		lineageTag: 5c9174cd-1ae5-4ed4-bb89-d0e0d4cb6ab7
+		lineageTag: 5a8ae09e-34a9-4cc6-b829-a7578e62f605
 		summarizeBy: sum
 		sourceColumn: dni
 
@@ -29,7 +29,7 @@ table 'fob_guard dim_usuario'
 
 	column area
 		dataType: string
-		lineageTag: d91e3ae8-964a-4f98-8eac-d4c21ff3a569
+		lineageTag: 2c1e9a24-b024-46d6-992b-729e0628251f
 		summarizeBy: none
 		sourceColumn: area
 
@@ -37,7 +37,7 @@ table 'fob_guard dim_usuario'
 
 	column empresa
 		dataType: string
-		lineageTag: 5286bd78-1bde-4b36-924c-f6aa2350a035
+		lineageTag: a1864894-d6e2-4244-911f-343d9d4c1c99
 		summarizeBy: none
 		sourceColumn: empresa
 
@@ -46,14 +46,14 @@ table 'fob_guard dim_usuario'
 	column fecha_creacion
 		dataType: dateTime
 		formatString: General Date
-		lineageTag: 995049ca-c4ce-4325-9367-a3f57cbbf781
+		lineageTag: 6bcb7af2-bea9-49eb-8a2e-332245ba2b9d
 		summarizeBy: none
 		sourceColumn: fecha_creacion
 
 		variation Variación
 			isDefault
-			relationship: 74061a9a-7113-4ba7-80d6-0bcee41dea33
-			defaultHierarchy: LocalDateTable_af96cffb-48e5-4d7e-bd33-10e988efa201.'Jerarquía de fechas'
+			relationship: 9187c400-a796-4edb-ba02-f31aae883236
+			defaultHierarchy: LocalDateTable_dee01f58-fd13-4cb2-8050-b92f5f8aa098.'Jerarquía de fechas'
 
 		annotation SummarizationSetBy = Automatic
 
@@ -61,7 +61,7 @@ table 'fob_guard dim_usuario'
 		mode: import
 		source =
 				let
-				    Origen = MySQL.Database("pierodb.mysql.database.azure.com", "fob_guard", [ReturnSingleDatabase=true]),
+				    Origen = MySQL.Database("dbfobguard.mysql.database.azure.com", "fob_guard", [ReturnSingleDatabase=true]),
 				    fob_guard_dim_usuario = Origen{[Schema="fob_guard",Item="dim_usuario"]}[Data]
 				in
 				    fob_guard_dim_usuario

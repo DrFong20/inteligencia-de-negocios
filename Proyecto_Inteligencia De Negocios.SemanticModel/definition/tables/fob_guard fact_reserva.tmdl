@@ -1,10 +1,10 @@
 table 'fob_guard fact_reserva'
-	lineageTag: 2a31b5b8-88d4-4f3d-9c3f-f0544ad36708
+	lineageTag: 9ae5d62f-dcfe-426a-af6c-a360647ac221
 
 	column id
 		dataType: int64
 		formatString: 0
-		lineageTag: 63215738-5000-4f1e-a4f3-f4abc54eed7c
+		lineageTag: 60a9f815-fd8a-47f6-8ddb-e25875ca600d
 		summarizeBy: sum
 		sourceColumn: id
 
@@ -13,7 +13,7 @@ table 'fob_guard fact_reserva'
 	column id_dispositivo
 		dataType: int64
 		formatString: 0
-		lineageTag: 1c280200-acbe-4abf-b1ed-57d31c2ad582
+		lineageTag: bdb1a74a-3c99-43fe-969a-d218d4ee49b8
 		summarizeBy: none
 		sourceColumn: id_dispositivo
 
@@ -22,7 +22,7 @@ table 'fob_guard fact_reserva'
 	column id_usuario
 		dataType: int64
 		formatString: 0
-		lineageTag: 02e67019-ac10-455d-9fff-a5b6f6d6a62f
+		lineageTag: 27e97819-10e4-4a3d-98e8-0ae03fcc8266
 		summarizeBy: none
 		sourceColumn: id_usuario
 
@@ -31,20 +31,20 @@ table 'fob_guard fact_reserva'
 	column fecha_reserva
 		dataType: dateTime
 		formatString: General Date
-		lineageTag: 975dde16-3293-41c8-aef1-67718fe5416b
+		lineageTag: 1c0aa1ce-b06e-4358-8216-69bd59ea2504
 		summarizeBy: none
 		sourceColumn: fecha_reserva
 
 		variation Variación
 			isDefault
-			relationship: 2eaa5f4e-ddd7-4876-a210-58873730fa6c
-			defaultHierarchy: LocalDateTable_097a70d4-253a-4874-a9c5-320e8096b972.'Jerarquía de fechas'
+			relationship: 8d434cd4-09d5-47b0-920d-a10d6063cd2e
+			defaultHierarchy: LocalDateTable_29c97ab0-d078-4db4-8d8f-e66eec7f7003.'Jerarquía de fechas'
 
 		annotation SummarizationSetBy = Automatic
 
 	column motivo_reserva
 		dataType: string
-		lineageTag: b751779f-3c6b-4e50-8184-b618e1db4eaa
+		lineageTag: 700e454e-c3ea-474e-adc6-9a84dddc4603
 		summarizeBy: none
 		sourceColumn: motivo_reserva
 
@@ -52,7 +52,7 @@ table 'fob_guard fact_reserva'
 
 	column tipo_movimiento
 		dataType: string
-		lineageTag: 8f9aa905-df38-4275-8af1-b0d548868272
+		lineageTag: 83c70f1a-4bd0-456a-927e-77f24b441f58
 		summarizeBy: none
 		sourceColumn: tipo_movimiento
 
@@ -60,7 +60,7 @@ table 'fob_guard fact_reserva'
 
 	column estado_dispositivo
 		dataType: string
-		lineageTag: cf0aad6a-768a-45f5-8e79-96788889e88a
+		lineageTag: 43d76013-f1b5-4a68-ab23-e85da506dc39
 		summarizeBy: none
 		sourceColumn: estado_dispositivo
 
@@ -70,10 +70,8 @@ table 'fob_guard fact_reserva'
 		mode: import
 		source =
 				let
-				    Origen = MySQL.Database("pierodb.mysql.database.azure.com", "fob_guard", [ReturnSingleDatabase=true]),
+				    Origen = MySQL.Database("dbfobguard.mysql.database.azure.com", "fob_guard", [ReturnSingleDatabase=true]),
 				    fob_guard_fact_reserva = Origen{[Schema="fob_guard",Item="fact_reserva"]}[Data]
 				in
 				    fob_guard_fact_reserva
-
-	annotation PBI_ResultType = Table
 

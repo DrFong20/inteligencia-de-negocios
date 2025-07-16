@@ -1,10 +1,10 @@
 table 'fob_guard fact_sesion'
-	lineageTag: 00feb8ca-1be3-4d52-8f4c-28a1aab8f3b4
+	lineageTag: e76f6cc1-f314-4af9-b1c4-4eef68787db1
 
 	column id
 		dataType: int64
 		formatString: 0
-		lineageTag: 2f3e3bce-382b-4fae-b922-a1f53f299daf
+		lineageTag: 0d482879-6001-491e-a0e7-9c59b2d1dcb2
 		summarizeBy: sum
 		sourceColumn: id
 
@@ -13,7 +13,7 @@ table 'fob_guard fact_sesion'
 	column id_usuario
 		dataType: int64
 		formatString: 0
-		lineageTag: 2ea92fa3-a902-48db-85fb-a4d1efc7f0c9
+		lineageTag: 6d1fd520-06ba-4329-b9da-882c44dc552f
 		summarizeBy: none
 		sourceColumn: id_usuario
 
@@ -21,7 +21,7 @@ table 'fob_guard fact_sesion'
 
 	column tipo_cierre
 		dataType: string
-		lineageTag: 898967e9-c556-4fcb-8807-886263b1e1a4
+		lineageTag: 9934eee1-ab1a-43c1-bd7f-6452ee1ccce8
 		summarizeBy: none
 		sourceColumn: tipo_cierre
 
@@ -30,14 +30,14 @@ table 'fob_guard fact_sesion'
 	column timestamp
 		dataType: dateTime
 		formatString: General Date
-		lineageTag: 58351860-6767-411e-b7ef-aa8fcaf6f922
+		lineageTag: 395a6c57-00d1-455b-8655-1b36a69fda73
 		summarizeBy: none
 		sourceColumn: timestamp
 
 		variation Variación
 			isDefault
-			relationship: 143244bd-c63e-45c5-a9ce-295285848f12
-			defaultHierarchy: LocalDateTable_7597ecd3-eb80-4ea1-a40c-b882e88274a7.'Jerarquía de fechas'
+			relationship: a64c15e2-efa3-4540-888b-e51f8c65052c
+			defaultHierarchy: LocalDateTable_429bfc5b-91ea-429a-9a5c-7b6cadb7f16b.'Jerarquía de fechas'
 
 		annotation SummarizationSetBy = Automatic
 
@@ -45,10 +45,8 @@ table 'fob_guard fact_sesion'
 		mode: import
 		source =
 				let
-				    Origen = MySQL.Database("pierodb.mysql.database.azure.com", "fob_guard", [ReturnSingleDatabase=true]),
+				    Origen = MySQL.Database("dbfobguard.mysql.database.azure.com", "fob_guard", [ReturnSingleDatabase=true]),
 				    fob_guard_fact_sesion = Origen{[Schema="fob_guard",Item="fact_sesion"]}[Data]
 				in
 				    fob_guard_fact_sesion
-
-	annotation PBI_ResultType = Table
 

@@ -1,10 +1,10 @@
 table 'fob_guard fact_inactividad'
-	lineageTag: 9729549d-e49a-485b-9aa8-cae2dcdf451e
+	lineageTag: 40c47bba-5636-4102-b115-87c5dba914a2
 
 	column id
 		dataType: int64
 		formatString: 0
-		lineageTag: 4ce5c8e5-aa21-40a9-9609-82b2c6c77796
+		lineageTag: 23edb1d0-0384-491e-b94f-e66fe72eb17d
 		summarizeBy: sum
 		sourceColumn: id
 
@@ -13,7 +13,7 @@ table 'fob_guard fact_inactividad'
 	column id_usuario
 		dataType: int64
 		formatString: 0
-		lineageTag: 92c12df4-f114-4895-9065-69dd99bb21fd
+		lineageTag: 1b0a4c54-9c0a-413a-a2eb-49ab7ab4b1db
 		summarizeBy: none
 		sourceColumn: id_usuario
 
@@ -22,14 +22,14 @@ table 'fob_guard fact_inactividad'
 	column hora_inactividad
 		dataType: dateTime
 		formatString: General Date
-		lineageTag: fa5c7b71-b775-432c-a9bb-c42c5b9e80d4
+		lineageTag: ff946d49-52af-4eff-9dd5-df573fc21265
 		summarizeBy: none
 		sourceColumn: hora_inactividad
 
 		variation Variación
 			isDefault
-			relationship: 8fb6ee95-c1da-4b5b-95e9-5b67b623972f
-			defaultHierarchy: LocalDateTable_4a22f64b-45ce-4ca6-94a1-39a6029c701b.'Jerarquía de fechas'
+			relationship: d5506914-c032-46eb-b7f9-321b2d4dbbe1
+			defaultHierarchy: LocalDateTable_2ed69ab1-9239-4b18-938a-74ba9673f79a.'Jerarquía de fechas'
 
 		annotation SummarizationSetBy = Automatic
 
@@ -37,7 +37,7 @@ table 'fob_guard fact_inactividad'
 		mode: import
 		source =
 				let
-				    Origen = MySQL.Database("pierodb.mysql.database.azure.com", "fob_guard", [ReturnSingleDatabase=true]),
+				    Origen = MySQL.Database("dbfobguard.mysql.database.azure.com", "fob_guard", [ReturnSingleDatabase=true]),
 				    fob_guard_fact_inactividad = Origen{[Schema="fob_guard",Item="fact_inactividad"]}[Data]
 				in
 				    fob_guard_fact_inactividad
